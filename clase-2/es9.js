@@ -47,7 +47,16 @@ console.log('Por valor - B:', B)
 
 const numerosA = [1,2,3,4]
 const numerosB = [5,6,7,8]
-const arregloCompleto = [...numerosA, ...numerosB]//un nuevo arreglo con ambos valores
+const arregloCompleto = [...numerosA, ...numerosB, 10,11,12,34 ]//un nuevo arreglo con ambos valores
 console.log('A:',numerosA)
 console.log('B',numerosB)
-console.log('A+B', arregloCompleto)
+console.log('A + B + otros valores', arregloCompleto)
+
+console.log('----------- Rest operator -----------------')
+
+function sumar(num1, num2, ...rest){
+    console.log('rest', rest)
+
+}
+
+sumar(1,2,3,5,9,6,7,78)
