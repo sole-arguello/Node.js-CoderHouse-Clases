@@ -48,6 +48,3 @@ console.log('Valores:', values)// [3,2,1,5,2,1,1,6,1,4] = 31
 const total =  values.reduce( (acc, curr) =>acc += curr, 0 )
 console.log('Total productos:', total)// 31
 
-
-
-
