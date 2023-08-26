@@ -46,20 +46,22 @@ class ProductManager{
         //valido que no se repita el codigo
         const codeExist = this.products.some(prod => prod.code === code)
         if(codeExist){
+            //no creo el producto
             console.log(`El codigo "${code}" ya existe, no sera agregado nuevamente`)
-        }else{
-            //creo el producto apartir de la clase
-            const newProducts = {
-                id: newId,
-                title,
-                description,
-                price,
-                thumbnail,
-                code,
-                stock
-            }
-            this.products.push(newProducts)
+            return
         }
+        //creo el producto apartir de la clase
+        const newProducts = {
+            id: newId,
+            title,
+            description,
+            price,
+            thumbnail,
+            code,
+            stock
+        }
+        this.products.push(newProducts)
+        
     }
     //metodo para encontrar por Id
     getProductById(id){
@@ -71,7 +73,7 @@ class ProductManager{
         }
            
     }
-
+    //metodo que calcula el precio total
     getTotalPrice(){
         const totalPrice = this.products.reduce( (total, product) => total += product.price, 0)
         console.log('Prcio Total:', totalPrice)
