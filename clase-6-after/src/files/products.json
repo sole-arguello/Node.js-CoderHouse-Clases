@@ -16,5 +16,23 @@
         "description": "Product 3 description",
         "price": 300,
         "code": "GHI789"
+    },
+    {
+        "title": "Product 4",
+        "description": "Product 4 description",
+        "price": 400,
+        "code": "JKL012"
+    },
+    {
+        "title": "Product 5",
+        "description": "Product 5 description",
+        "price": 500,
+        "code": "MNO345"
+    },
+    {
+        "title": "Product 6",
+        "description": "Product 6 description",
+        "price": 600,
+        "code": "PQR678"
     }
 ]
