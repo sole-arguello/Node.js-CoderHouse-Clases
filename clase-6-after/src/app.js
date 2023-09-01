@@ -31,11 +31,11 @@ NO INCLUIR LOS node_modules generados.
 
 import express from 'express';
 import { ProductManagerFile } from './persistence/porudctManagerFile.js';
-
-//creo una instancia
-const managerProductService = new ProductManagerFile()
-
 //console.log(ProductManagerFile);
+//creo una instancia
+const managerProductService = new ProductManagerFile('./src/files/products.json')
+//console.log(managerProductService);
+
 const port = 8080
 
 const app = express()//creo la aplicacion
