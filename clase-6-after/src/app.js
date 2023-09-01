@@ -9,12 +9,14 @@ Desarrollar un servidor express que, en su archivo app.js importe al archivo de 
 
  Aspectos a incluir
 El servidor debe contar con los siguientes endpoints:
-ruta ‘/products’, la cual debe leer el archivo de productos y devolverlos dentro de un objeto. Agregar el soporte para recibir por query param el valor ?limit= el cual recibirá un límite de resultados.
+ruta ‘/products’, la cual debe leer el archivo de productos y devolverlos dentro de un objeto. Agregar 
+el soporte para recibir por query param el valor ?limit= el cual recibirá un límite de resultados.
 Si no se recibe query de límite, se devolverán todos los productos
 Si se recibe un límite, sólo devolver el número de productos solicitados
 
 
-ruta ‘/products/:pid’, la cual debe recibir por req.params el pid (product Id), y devolver sólo el producto solicitado, en lugar de todos los productos. 
+ruta ‘/products/:pid’, la cual debe recibir por req.params el pid (product Id), y devolver sólo 
+el producto solicitado, en lugar de todos los productos. 
 Sugerencias
 Tu clase lee archivos con promesas. recuerda usar async/await en tus endpoints
 Utiliza un archivo que ya tenga productos, pues el desafío sólo es para gets. 
@@ -40,7 +42,23 @@ const port = 8080
 
 const app = express()//creo la aplicacion
 
-
+//rutas del servidor
+app.get('/products', async (req, res)=>{
+    try {
+        const limit = req.query.limit//obtengo el limite de tipo string
+        const limitNumber = parseInt(limit)
+        const products = await managerProductService.getProducts()
+        if(limit){
+            //[1,2,3,4,5]=> slice[1,2,3]
+            const productsLimit = products.slice(0, limitNumber)
+            res.send(productsLimit)
+        }else{
+            res.send(products)
+        }
+    } catch (error) {
+        res.send(error.message)
+    }
+})
 
 app.listen(port, () => {
     console.log(`Servidor escuchando en el puerto ${port}`)
