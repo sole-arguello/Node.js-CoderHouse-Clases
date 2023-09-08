@@ -32,6 +32,7 @@ NO INCLUIR LOS node_modules generados.
  */
 
 import express from 'express';
+import cors from 'cors'
 import { ProductManagerFile } from './persistence/porudctManagerFile.js';
 //console.log(ProductManagerFile);
 //creo una instancia
@@ -42,6 +43,7 @@ const port = 8080
 
 const app = express()//creo la aplicacion
 
+app.use(cors())
 //rutas del servidor
 app.get('/products', async (req, res)=>{
     try {
