@@ -1,0 +1,24 @@
+RPC: 
+
+getProduct -> obtener un producto
+deleteUsers -> eliminar un usuario
+
+REST
+METODO get, post, put, delete
+
+enpoints
+users -> realizar alguna operacion sobre los usuarios
+courses -> realizar alguna gestion sobre los cursos
+students -> enpoints para gestionar estudiantes
+
+POST /users -> crear un usuario
+PUT /users -> actualizar un usuario
+DELETE /users -> eliminar un usuario
+GET /users -> obtener una lista de usuario
+GET /users/:id -> obtener un usuario por id y su informacion
+
+MALA PRACTICA:
+
+POST /addCourses
+
+POSTMAN 
