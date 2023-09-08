@@ -21,4 +21,4 @@ MALA PRACTICA:
 
 POST /addCourses
 
-POSTMAN 
+POSTMAN sofwares para realizar peticiones como si fueramos clientes de la api
