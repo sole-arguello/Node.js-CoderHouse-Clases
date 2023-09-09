@@ -10,8 +10,13 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const petInfo = req.body
+    if(!petInfo.name || !petInfo.age){
+        res.json({message: 'faltan datos'})
+        return
+    }
     console.log("petsInfo", petInfo);
-    res.send('Peticion resibida')
+    pets.push(petInfo)
+    res.json({message:'mascota creada'})
 })
 
 
