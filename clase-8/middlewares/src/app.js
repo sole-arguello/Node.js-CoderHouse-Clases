@@ -9,7 +9,8 @@ const app = express()
 
 //carpeta public
 app.use(express.static('public'))
-app.use(express.json())//permite obtener informacion formato json atravez de body
+//atravez de use(middleware express.json())
+app.use(express.json())//de aplicacion
 app.use(express.urlencoded({extended: true}))//para formularios y poder capturar los datos
 
 app.use("/api/users", usersRouter)
