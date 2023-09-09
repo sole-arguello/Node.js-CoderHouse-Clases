@@ -9,14 +9,10 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    res.json({message: 'endpoints post pets'})
+    const petInfo = req.body
+    console.log("petsInfo", petInfo);
+    res.send('Peticion resibida')
 })
 
-router.put('/:petsId', (req, res) => {
-    res.json({message: 'endpoints put pets'})
-})
 
-router.delete('/:petsId', (req, res) => {
-    res.json({message: 'endpoints delete pets'})
-})
 export {router as petsRouter}
