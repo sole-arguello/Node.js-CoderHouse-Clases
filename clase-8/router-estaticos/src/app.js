@@ -15,6 +15,10 @@ app.use("/api/pets", petsRouter)
 //otra forma de hacerlo
 app.use("/api/orgs", orgsRouter)
 
+
+//carpeta public
+app.use(express.static('public'))
+
 app.listen(port, () => {
     console.log(`app listening on port ${port}!`)
 })
