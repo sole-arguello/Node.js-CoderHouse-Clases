@@ -50,7 +50,9 @@ export class ProductManagerFile{
     async createProduct(infoProduct) {
         try {
             //verifico que los campos se carguen obligatoriamente
-            if (!infoProduct.title || !infoProduct.description || !infoProduct.price || !infoProduct.thumbnail || !infoProduct.code || !infoProduct.stock) {
+            if (!infoProduct.title || !infoProduct.description || !infoProduct.price || 
+                !infoProduct.thumbnail || !infoProduct.code || !infoProduct.boolean || 
+                !infoProduct.stock || !infoProduct.category) {
                 throw new Error('Todos los campos son obligatorios');
             }
             //leo el producto en el archivo
