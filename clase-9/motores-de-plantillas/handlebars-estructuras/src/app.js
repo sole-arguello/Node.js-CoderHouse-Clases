@@ -11,6 +11,9 @@ app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)
 })
 
+//middlewares
+app.use(express.static(path.join(__dirname, '/public')))
+
 //configuracion del motor de plantillas
 app.engine('.hbs', engine({extname: '.hbs'}))//defino la extension de los archivos
 app.set('view engine', '.hbs')//defino el motor de plantillas
