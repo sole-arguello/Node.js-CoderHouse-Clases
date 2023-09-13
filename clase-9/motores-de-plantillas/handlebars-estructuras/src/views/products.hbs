@@ -1,0 +1,12 @@
+<h1>Pagina de Productos</h1>
+
+{{#if isAdmin}}
+    <p>Listado de Productos</p>
+    <ul>
+    {{#each products}}
+    <li>Nombre del producto: {{this.name}} - Precio: {{this.price}}</li>
+    {{/each}}
+    </ul>
+{{else}}
+    <p>No tiene permisos para ver el contenido</p>
+{{/if}}
