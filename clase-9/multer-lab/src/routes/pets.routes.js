@@ -30,7 +30,7 @@ router.post('/',uploader.single('file'), (req, res) => {
        // return
     }else{
         console.log("petsInfo", petInfo);
-        //console.log('req.file', req.file);
+        console.log('req.file', req.file);
         petInfo.thumbnail = req.file.filename
         pets.push(petInfo)
         res.json({message:'mascota creada'})
