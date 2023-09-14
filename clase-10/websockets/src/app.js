@@ -29,3 +29,19 @@ app.set('views', path.join(__dirname, 'views'))//defino la ubicacion de los arch
 //no hace referencia a la ruta, sino al router utilizando el path que ayamos creado
 app.use(viewsRouter)
 
+//configuracion de socket del lado del cliente
+socketServer.on('connection', (socket) => {
+    console.log('cliente conectado', socket.id)
+
+    //recibir msg del cliente al servidor
+    socket.on('clientMessage', (data) => {
+        console.log('data desde el cliente:', data);
+    })
+    setTimeout(() => {
+        socket.emit('serverMessage', 'canal abierto')
+    },4000)
+
+    setTimeout(() => {
+        socketServer.emit('msgAllFormServer', 'nueva promocion')
+    },8000)
+})
