@@ -8,9 +8,12 @@ import { viewsRouter } from './routes/views.routes.js'
 
 const app = express()
 const port = 8080
+//servidor expres con protocolo http
 const httpServer = app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)
 })
+//servidor socket con protocolo ws
+const socketServer = new Server(httpServer)//vinculamos ambos, y configure websocket del lado del servidor
 
 //middlewares
 app.use(express.static(path.join(__dirname, '/public')))
