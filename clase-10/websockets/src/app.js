@@ -29,6 +29,11 @@ app.set('views', path.join(__dirname, 'views'))//defino la ubicacion de los arch
 //no hace referencia a la ruta, sino al router utilizando el path que ayamos creado
 app.use(viewsRouter)
 
+
+//activada en clases
+let msgHistory = []
+
+
 //configuracion de socket del lado del cliente
 socketServer.on('connection', (socket) => {
     console.log('cliente conectado', socket.id)
@@ -40,8 +45,19 @@ socketServer.on('connection', (socket) => {
     setTimeout(() => {
         socket.emit('serverMessage', 'canal abierto')
     },4000)
-
-    setTimeout(() => {
-        socketServer.emit('msgAllFormServer', 'nueva promocion')
-    },8000)
+//actividad de clases 
+    // socket.on('msg', (data) => {
+    //     console.log('tecla presionada desde el servidor:', data);
+    // })
+    socket.on('msgInput', (data) => {
+        const msgItem = {socketid: socket.id, message: data}
+        msgHistory.push(msgItem)
+        //console.log('msgItem:', msgItem);
+    })
+    //envio mensaje con el historial de mensajes
+    socket.emit('messages', msgHistory)
+/*----------------------------*/
+    // setTimeout(() => {
+    //     socketServer.emit('msgAllFormServer', 'nueva promocion')
+    // },8000)
 })
