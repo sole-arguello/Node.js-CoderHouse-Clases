@@ -2,12 +2,13 @@ import express from 'express'
 import { engine } from 'express-handlebars'
 import { __dirname } from './utils.js'
 import path from 'path'
+import { Server } from 'socket.io'
 
 import { viewsRouter } from './routes/views.routes.js'
 
 const app = express()
 const port = 8080
-app.listen(port, () => {
+const httpServer = app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)
 })
 
