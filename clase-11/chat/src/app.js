@@ -11,8 +11,10 @@ const app = express();
 app.use(express.json())
 app.use(express.static(path.join(__dirname, "public")))
 
-
-app.listen(port, () => {console.log(`Servidor escuchando en el puerto ${port}`)})
+//servidor de http con express
+const httpServer = app.listen(port, () => {console.log(`Servidor escuchando en el puerto ${port}`)})
+//servidor de websockets con socket.io
+const io = new Server(httpServer)
 
 //configuracion
 app.engine("hbs", engine({extname: ".hbs"}))
