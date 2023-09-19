@@ -3,6 +3,7 @@ console.log('javaScript en el frontend');
 const socket = io();
 
 const userName = document.getElementById('userName')
+const inputMessage = document.getElementById('inputMessage')
 
 let user//variable para guardar el nombre del usuario
 Swal.fire({
