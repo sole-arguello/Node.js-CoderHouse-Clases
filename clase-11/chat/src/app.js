@@ -3,6 +3,7 @@ import { __dirname } from "./utils.js";
 import path from "path";
 import { engine } from "express-handlebars";
 import { viewsRouter } from "./routes/views.routes.js";
+import { Server } from "socket.io";
 
 const port = 8080
 const app = express();
