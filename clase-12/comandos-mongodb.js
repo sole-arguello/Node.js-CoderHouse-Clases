@@ -1,5 +1,5 @@
 //https://www.mycompiler.io/es -> compilador en linea
-
+//C:\Program Files\MongoDB\Server\5.0\bin
 
 // show dbs;
 // use tiendaLenceria;
