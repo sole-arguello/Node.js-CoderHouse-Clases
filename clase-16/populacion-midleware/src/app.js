@@ -115,6 +115,17 @@ app.get('/course-populate/:courseId', async (req, res) => {
     }
 })
 
+//populacion middleware
+//localhost:8080/course-populate-middleware/:courseId
+app.get('/populate-middleware/:courseId', async (req, res) => {
+    try {
+        const courseId = req.params.courseId;
+        const result = await coursesModel.findOne({_id: courseId});
+        res.json({status: 'success', data: result})
+    } catch (error) {
+        res.json({status: 'error', message: error.message})
+    }
+}) 
 
 
 

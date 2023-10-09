@@ -19,6 +19,13 @@ const coursesSchema = new mongoose.Schema({
     }
 })
 
+//populacion middleware -> dentro del array van los metodos de mongo
+coursesSchema.pre(["find", "findOne"], function (next) {
+    //this hace referencia al modelo que se esta ejecutando -> coursesModel.findById(courseId)
+    this.populate('courseStudents');
+    next();
+})
+
 export const coursesModel = mongoose.model(coursesColection, coursesSchema);
 
 
