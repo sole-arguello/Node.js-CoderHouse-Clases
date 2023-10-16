@@ -1,1 +1,15 @@
 <h1>Login</h1>
+
+<p style="color: green">{{message}}</p>
+
+<p style="color: red">{{error}}</p>
+<p style="color: red">{{errorSession}}</p>
+
+<form method="post" action="/api/sessions/login" >
+
+    <input type="text" name="email" placeholder="Tu Email">
+    <br>
+    <input type="password" name="password" placeholder="Tu Contraseña">
+
+    <button>Iniciar sessions</button>
+</form>

@@ -20,7 +20,14 @@ router.get("/login", (req, res) => {
 
 
 router.get("/profile", (req, res) => {
-    res.render("profileViews");
+    if(req.session.email){
+        const userEmail = req.session.email
+        res.render("profileViews", {userEmail});
+    }else{
+        res.render("loginViews", {errorSession: "Para ir al perfil, Debe iniciar sesion"});
+    }
+
+
 })
 
 export { router as viewsRouter };
