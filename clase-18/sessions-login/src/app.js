@@ -4,6 +4,8 @@ import handlebars from 'express-handlebars';
 import path from "path";
 import { __dirname } from "./utils.js";
 
+import session from 'express-session';
+
 import { viewsRouter } from './routes/views.routes.js';
 import { usersRouter } from './routes/users.routes.js';
 
@@ -12,7 +14,14 @@ const app = express();
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+//cookies para el front
 app.use(cookieParser('claveSecretCookie'))
+//session para el back
+app.use(session({
+    secret: 'claveSecretSession',
+    resave: true,
+    saveUninitialized: true
+}))
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
