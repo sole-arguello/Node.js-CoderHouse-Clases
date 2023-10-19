@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { usersModel } from "../persistence/mongo/managers/models/users.models.js";
+import { createHash } from "../utils.js";
 
 //gestionar las sessiones
 const router = Router();
@@ -7,6 +8,10 @@ const router = Router();
 router.post('/signUp', async(req, res) => {
     try {
         const singUpForm = req.body
+        //aplico el hash a la contraseña
+        singUpForm.password = createHash(singUpForm.password)
+        //console.log('contraseña encriptada',singUpForm)
+
         const result = await usersModel.create(singUpForm)
         res.render('loginViews', {message: 'Usuario Registrado correctamente'})
     } catch (error) {
@@ -21,12 +26,12 @@ router.post('/login', async(req, res) => {
         if(!user){
             return res.render('loginViews', {error: 'Usuario no registrado'})
         }
-        //verificar contraseña
-        if(user.password != loginForm.password){
+        //verificar contraseña 1.10
+        if(isValidPassword(loginForm.password, user)){
             return res.render('loginViews', {error: 'Credenciales invalidas'})
         }
 
-        //si todo esta ok
+        //si todo esta ok, creo la session del usuario
         req.session.email = user.email
         res.redirect('/profile')
         
