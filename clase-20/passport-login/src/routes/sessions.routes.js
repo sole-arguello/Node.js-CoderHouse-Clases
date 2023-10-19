@@ -41,10 +41,6 @@ router.get('/logout', (req, res) => {
         req.session.destroy(err => {
             if(err ) return res.render('profileViews', {error: 'No se pudo cerrar la sesion'})
             res.redirect('/')
-            // if(err){
-            //     console.log(err)
-            // }
-            // res.redirect('/')
         })
     } catch (error) {
         
