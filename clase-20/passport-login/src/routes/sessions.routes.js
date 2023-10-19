@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { usersModel } from "../persistence/mongo/managers/models/users.models.js";
-import { createHash } from "../utils.js";
+import { createHash, isValidPassword } from "../utils.js";
+
 
 //gestionar las sessiones
 const router = Router();
