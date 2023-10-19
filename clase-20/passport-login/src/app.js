@@ -5,6 +5,9 @@ import { engine } from 'express-handlebars';
 import path from 'path';
 import { __dirname } from "./utils.js";
 import { connectDB } from "./config/configDB.js";
+import passport from 'passport';
+import { initializePassport } from './config/passport.config.js';
+
 import { viewsRouter } from './routes/views.routes.js';
 import { sessionsRouter } from './routes/sessions.routes.js';
 
@@ -35,6 +38,12 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
+
+//configuracion de passport
+initializePassport()
+
+app.use(passport.initialize())//inicio passport dentro del servidor
+app.use(passport.session())//vinculo la sesion con passport
 
 //rutas
 app.use(viewsRouter)
