@@ -1,7 +1,7 @@
 import passport from "passport";
 
 import localStrategy from "passport-local";
-import { createHash, inValidPassword } from "../utils.js";
+import { createHash, isValidPassword } from "../utils.js";
 
 import { usersModel } from "../persistence/mongo/managers/models/users.models.js"
 
@@ -43,10 +43,34 @@ export const initializePassport = () => {
     ))
 
 
+    //estrategia para login
+    passport.use('loginLocalStrategy', new localStrategy(
+        {
+            usernameField: 'email',
+        },
+        async (username, password, done) => {
+            try {
+                const user = await usersModel.findOne({ email: username });
+                //al revez del registro
+                if (!user) {
+                    return done(null, false);//usuario no esta registrado
+                }
+                if (!isValidPassword(password, user)) {
+                    return done(null, false);//{ message: 'Credenciales invalidas' }
+                }
+                //si todo esta ok(null), creo la session del usuario(user)
+                return done(null, user);
+            } catch (error) {
+                return done(error);
+            }
+        }
+    ));
+
+    //genero la sesion guardando el id
     passport.serializeUser((user, done)=>{
         done(null, user._id)//id de la base de datos
     })
-
+    //cuando el usuario haga otra peticion(login) se consulta la info, se trae y se guarda en req.user
     passport.deserializeUser(async(id, done)=>{
         const user = await usersModel.findById(id)
         done(null, user)//queda guardado la info del ususario en una variable req.user
