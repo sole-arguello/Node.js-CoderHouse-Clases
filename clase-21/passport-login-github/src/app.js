@@ -7,6 +7,7 @@ import { __dirname } from "./utils.js";
 import { connectDB } from "./config/configDB.js";
 import passport from 'passport';
 import { initializePassport } from './config/passport.config.js';
+import { config } from './config/config.js';
 
 import { viewsRouter } from './routes/views.routes.js';
 import { sessionsRouter } from './routes/sessions.routes.js';
@@ -32,9 +33,9 @@ app.set('views', path.join(__dirname, '/views'));
 app.use(session({
     store: MongoStore.create({
         ttl: 60,
-        mongoUrl: 'mongodb+srv://soledadar:g04D4zMd9O4y2GvK@cluster0.njbseut.mongodb.net/primerLogin?retryWrites=true&w=majority'
+        mongoUrl: config.mongo.url,
     }),
-    secret: 'claveSecretSession',
+    secret: config.server.secretSession,
     resave: true,
     saveUninitialized: true
 }))
