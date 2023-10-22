@@ -78,8 +78,19 @@ export const initializePassport = () => {
         },
         async (accessToken, refreshToken, profile, done) => {
             try {
-                console.log('profile', profile)
-
+                //console.log('profile', profile)
+                const user = await usersModel.findOne({email: profile.username})
+                if(user){
+                    return done(null, user)//creo la session
+                }
+                const newUser = {
+                    first_name: profile._json.name,
+                    email: profile.username,
+                    password: createHash(profile.id),
+                }
+                console.log(newUser)
+                const userCreated = await usersModel.create(newUser)
+                return done(null, userCreated)
             } catch (error) {
                 return done(error)
             }
