@@ -1,5 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config()
+
+
 export const config = {
 
     server: {
@@ -11,7 +13,7 @@ export const config = {
     },
 
     github:{
-        callbackUrl: process.env.GITHUB_CALLBACK,
+        callbackUrl: process.env.GITHUB_CALLBACK_URL,
         clientId: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }
