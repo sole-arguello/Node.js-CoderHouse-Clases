@@ -20,8 +20,7 @@ loginForm.addEventListener('submit', (event) => {
 
     }).then(data => {
         console.log(data)
-        //guardo el token en local storage
-        localStorage.setItem('token', data.accessToken)
+        
     })
 
 
