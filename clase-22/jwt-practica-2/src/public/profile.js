@@ -5,7 +5,7 @@ profileBtn.addEventListener('click', () => {
     //hago la peticion al servidor 
     fetch('/profile',{
         method: 'get',
-        Headers: {
+        headers: {
             "Content-type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem('token')}`
         },

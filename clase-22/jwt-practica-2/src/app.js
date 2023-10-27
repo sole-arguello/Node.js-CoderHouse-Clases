@@ -24,7 +24,8 @@ app.post('/login', (req, res) => {
 
 app.get('/profile', validateToken, (req, res) => {
     
-    res.json({resul:req.user})
+    res.json({result: req.user})
+    
 })
 
-//pronar ruta en postman
+//probar ruta en postman

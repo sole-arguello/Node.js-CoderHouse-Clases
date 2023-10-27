@@ -10,7 +10,7 @@ loginForm.addEventListener('submit', (event) => {
     }
     //envio la peticion al servidor 
     fetch('/login', {
-        method: 'POST',
+        method: 'post',
         headers: {//recibo la informacion
             'Content-type': 'application/json'
         },
