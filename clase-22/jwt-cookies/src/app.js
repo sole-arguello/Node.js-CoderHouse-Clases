@@ -3,6 +3,8 @@ import cookieParser from 'cookie-parser';
 import { __dirname } from './utils.js';
 import path from 'path';
 import { generateToken, validateToken } from './utils.js'
+import passport from 'passport';
+import { initializePassport } from './config/passport.config.js';
 
 const port = 8080;
 const app = express();
@@ -17,6 +19,9 @@ app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 })
 
+initializePassport()
+app.use(passport, initialize())
+
 app.post('/login', (req, res) => {
     //validar si el usuario existe o no en la db, que la constrasena sea correcta
     const user = req.body
@@ -25,7 +30,7 @@ app.post('/login', (req, res) => {
     {httpOnly: true}).json({status: 'seccess', message:'Login correcto'})
 })
 
-app.get('/profile', validateToken, (req, res) => {
+app.get('/profile', passport.authenticate('jwtAuth', {session: false}), (req, res) => {
     
     res.json({result: req.user})
     

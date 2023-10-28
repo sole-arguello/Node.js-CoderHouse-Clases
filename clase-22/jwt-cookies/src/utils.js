@@ -3,7 +3,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 export const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-const PRIVATE_KEY = 'coderSecretToken'
+export const PRIVATE_KEY = 'coderSecretToken'
 
 export const generateToken = (user) => {//recibe los datos del usuario que se va a loguear
     //guardar informacion
