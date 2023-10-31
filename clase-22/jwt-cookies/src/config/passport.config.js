@@ -1,33 +1,34 @@
-import passport from 'passport'
-import jwt from 'passport-jwt'
-import { PRIVATE_KEY } from '../utils'
+import passport from "passport";
+import jwt from "passport-jwt";
+import {PRIVATE_KEY}from "../utils.js";
 
-const JWTStrategy = jwt.Strategy
-const extractJwt = jwt.ExtractJwt//extraer el token
+const JWTStrategy = jwt.Strategy;
+const extractJwt = jwt.ExtractJwt; //Extraer el token (cookie,query params, body, headers)
 
-export const initializePassport = () => {
-    passport.use('jwtAuth', new JWTStrategy(
-        { 
-            jwtFromRequest: extractJwt.fromExtractors([cookieExtractor]),
-            secretOrKey: PRIVATE_KEY,
-            
+export const initializePassport = ()=>{
+    passport.use("jwtAuth", new JWTStrategy(
+        {
+            //Extraer la informacion del token
+            jwtFromRequest:extractJwt.fromExtractors([cookieExtractor]),
+            secretOrKey:PRIVATE_KEY
         },
-        async (jwtPayLoad, done) => {
+        async (jwtPayload,done)=>{
             try {
-                return done(null, jwtPayLoad)//re.user = info del token
+                return done(null,jwtPayload); //req.user = info del token
             } catch (error) {
-                return done(error)
+                return done(error);
             }
         }
-    ))
+    ));
 }
 
-const cookieExtractor = (req) => {
-    let token
-    if(req && req.cookies){
-       token = req.cookies['cookieToken']
-    }else{
-        token = null
+//funcion para extraer el token de la cookie
+const cookieExtractor = (req)=>{
+    let token;
+    if(req && req.cookies){ //req?.cookies
+        token = req.cookies["cookieToken"];
+    } else {
+        token = null;
     }
-    return token
-}
+    return token;
+};
