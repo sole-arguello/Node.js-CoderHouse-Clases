@@ -5,6 +5,7 @@ import path from "path";
 import { __dirname } from "./utils.js";
 
 import session from 'express-session';
+import { config } from './config/config.js';
 
 import { viewsRouter } from './routes/views.routes.js';
 import { usersRouter } from './routes/users.routes.js';
@@ -15,10 +16,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //cookies para el front
-app.use(cookieParser('claveSecretCookie'))
+app.use(cookieParser(config.secret_key.cookie_key))
 //session para el back
 app.use(session({
-    secret: 'claveSecretSession',
+    secret: config.secret_key.session_key ,
     resave: true,
     saveUninitialized: true
 }))

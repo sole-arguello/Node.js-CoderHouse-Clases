@@ -2,6 +2,8 @@ import express from 'express';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 
+import { config } from './config/config.js';
+
 const port = 8080;
 const app = express();
 
@@ -14,7 +16,7 @@ app.use(session({
     //almacenamiento de mongo
     store: MongoStore.create({
         ttl: 60,
-        mongoUrl: 'mongodb+srv://soledadar:g04D4zMd9O4y2GvK@cluster0.njbseut.mongodb.net/ecommerceDB?retryWrites=true&w=majority'
+        mongoUrl: config.mongo.url,
     }),
     secret: 'claveSecretSession',
     resave: true,

@@ -5,12 +5,13 @@ import path from "path";
 import { generateToken, validateToken } from "./utils.js";
 import passport from "passport";
 import { initializePassport } from "./config/passport.config.js";
+import { config } from "./config/config.js";
 
 const port = 8080;
 const app = express();
 
 //middleware
-app.use(cookieParser());
+app.use(cookieParser(config.PRIVATE_KEY));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,"/public")));

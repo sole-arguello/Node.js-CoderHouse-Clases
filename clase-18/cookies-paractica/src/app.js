@@ -1,10 +1,14 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
+
+
 
 const port = 8080;
 const app = express();
 //middlewares
-app.use(cookieParser('claveSecretCookie'))
+
+app.use(cookieParser(process.env.COOKIE_KEY))
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
