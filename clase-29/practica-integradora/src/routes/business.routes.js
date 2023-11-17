@@ -1,14 +1,12 @@
-import {Router } from 'express';
-import { BusinessController } from '../controllers/business.controller.js';
+import {Router} from "express";
+import { BusinessController } from "../controllers/business.controller.js";
 
 const router = Router();
 
-router.get('/', BusinessController.getAllBusiness);
+router.get("/", BusinessController.getAllBusiness);
+router.get("/:bid", BusinessController.getOneBusiness);
+router.post("/", BusinessController.createBusiness);
+router.put("/:bid/products", BusinessController.addProduct);
 
-router.get('/:id', BusinessController.getOneBusiness);
 
-router.post('/', BusinessController.createBusiness);
-
-router.put('/:id/products', BusinessController.addProducts);
-
-export { router as businessRouter }
+export { router as businessRouter };

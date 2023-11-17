@@ -1,12 +1,10 @@
-import {Router } from 'express';
-import { OrdersControllers } from '../controllers/order.controller.js';
+import {Router} from "express";
+import { OrdersController } from "../controllers/orders.controller.js";
 
 const router = Router();
 
-router.get('/:oid', OrdersControllers.getOrder);
+router.get("/:oid",OrdersController.getOrder);
+router.post("/", OrdersController.createOrder);
+router.put("/:oid", OrdersController.modifyStatusOrder);
 
-router.post('/', OrdersControllers.createOrder);
-
-router.put('/:oid', OrdersControllers.modifyStatusOrder);
-
-export { router as ordersRouter }
+export { router as ordersRouter };
